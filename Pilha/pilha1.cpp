@@ -23,9 +23,7 @@ Pilha *inserir(int valor, Pilha *topo) {
 
 void Imprimir(Pilha *topo){
     if(!topo) return;
-    for (Pilha *i = topo; i !=NULL; i = i->prox) [
-        
-    ]
+    for (Pilha *i = topo; i !=NULL; i = i->prox) {}
 }
 
 int main(){
