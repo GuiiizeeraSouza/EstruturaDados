@@ -4,14 +4,14 @@
 #include <cstdlib>
 #include <ctime>
 
-int generateRandomNumber(int min, int max) {
+int gerarNumeroAleatorio(int min, int max) {
     return min + rand() % (max - min + 1);
 }
 
 std::vector<int> generateRandomList(int N, int min, int max) {
     std::vector<int> list;
     for (int i = 0; i < N; ++i) {
-        list.push_back(generateRandomNumber(min, max));
+        list.push_back(gerarNumeroAleatorio(min, max));
     }
     return list;
 }

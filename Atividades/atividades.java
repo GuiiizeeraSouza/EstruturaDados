@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class atividades {
-    public static int generateRandomNumber(int min, int max) {
+    public static int gerarNumeroAleatório(int min, int max) {
         Random rand = new Random();
         return rand.nextInt(max - min + 1) + min;
     }
@@ -17,8 +17,8 @@ public class atividades {
         ArrayList<Integer> lista1 = new ArrayList<>();
         ArrayList<Integer> lista2 = new ArrayList<>();
         for (int i = 0; i < N; ++i) {
-            lista1.add(generateRandomNumber(1, 20)); 
-            lista2.add(generateRandomNumber(1, 20));
+            lista1.add(gerarNumeroAleatório(1, 20)); 
+            lista2.add(gerarNumeroAleatório(1, 20));
         }
 
         // Mostrar conteúdo das listas
