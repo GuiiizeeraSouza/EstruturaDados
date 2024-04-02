@@ -1,84 +1,101 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <unordered_set>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 
-int gerarNumeroAleatorio(int min, int max) {
-    return min + rand() % (max - min + 1);
-}
+using namespace std;
 
-std::vector<int> generateRandomList(int N, int min, int max) {
-    std::vector<int> list;
-    for (int i = 0; i < N; ++i) {
-        list.push_back(gerarNumeroAleatorio(min, max));
+
+vector<int> gerarLista(int tamanho)
+{
+    vector<int> lista;
+    for (int i = 0; i < tamanho; ++i)
+    {
+        lista.push_back(rand() % 100); 
     }
-    return list;
+    return lista;
 }
 
-void displayList(const std::vector<int>& list) {
-    for (int num : list) {
-        std::cout << num << " ";
+
+void mostrarLista(const vector<int> &lista)
+{
+    for (int num : lista)
+    {
+        cout << num << " ";
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
-void intersection(const std::vector<int>& list1, const std::vector<int>& list2) {
-    std::vector<int> common;
-    for (int num : list1) {
-        if (std::find(list2.begin(), list2.end(), num) != list2.end()) {
-            common.push_back(num);
+int main()
+{
+    srand(time(nullptr));
+
+    int numListas, tamanhoLista;
+    cout << "Quantas listas voce deseja gerar? ";
+    cin >> numListas;
+    cout << "Qual eh o tamanho das listas? ";
+    cin >> tamanhoLista;
+
+    vector<vector<int>> listas(numListas);
+
+  
+    cout << "Listas geradas:" << endl;
+    for (int i = 0; i < numListas; ++i)
+    {
+        listas[i] = gerarLista(tamanhoLista);
+        cout << "Lista " << i + 1 << ": ";
+        mostrarLista(listas[i]);
+    }
+
+    // Comparar as listas
+    unordered_set<int> numerosRepetidos;
+    unordered_set<int> todosNumeros;
+    for (int i = 0; i < numListas; ++i)
+    {
+        for (int num : listas[i])
+        {
+            if (todosNumeros.count(num) > 0)
+            {
+                numerosRepetidos.insert(num);
+            }
+            else
+            {
+                todosNumeros.insert(num);
+            }
         }
     }
 
-    std::cout << "Números que aparecem nas duas listas: ";
-    for (int num : common) {
-        std::cout << num << " ";
+    cout << "\nNumeros que se repetem em todas as listas:" << endl;
+    if (numerosRepetidos.empty())
+    {
+        cout << "Nenhum numero se repete em todas as listas." << endl;
     }
-    std::cout << std::endl;
-}
+    else
+    {
+        for (int num : numerosRepetidos)
+        {
+            cout << num << " ";
+        }
+        cout << endl;
+    }
 
-void uniqueNumbers(const std::vector<int>& list1, const std::vector<int>& list2) {
-    std::vector<int> unique1, unique2;
-    
-    for (int num : list1) {
-        if (std::find(list2.begin(), list2.end(), num) == list2.end() &&
-            std::find(unique1.begin(), unique1.end(), num) == unique1.end()) {
-            unique1.push_back(num);
+    cout << "\nNumeros que nao se repetem em todas as listas:" << endl;
+    bool temNaoRepetido = false;
+    for (int num : todosNumeros)
+    {
+        if (numerosRepetidos.find(num) == numerosRepetidos.end())
+        {
+            cout << num << " ";
+            temNaoRepetido = true;
         }
     }
-
-    for (int num : list2) {
-        if (std::find(list1.begin(), list1.end(), num) == list1.end() &&
-            std::find(unique2.begin(), unique2.end(), num) == unique2.end()) {
-            unique2.push_back(num);
-        }
+    if (!temNaoRepetido)
+    {
+        cout << "Todos os numeros se repetem em pelo menos uma lista." << endl;
     }
-
-    std::cout << "Números que aparecem somente na primeira lista: ";
-    displayList(unique1);
-    std::cout << "Números que aparecem somente na segunda lista: ";
-    displayList(unique2);
-}
-
-int main() {
-    srand(static_cast<unsigned int>(time(nullptr)));
-
-    int N;
-    std::cout << "Digite o tamanho das listas: ";
-    std::cin >> N;
-
-    // Gerando as duas listas
-    std::vector<int> lista1 = generateRandomList(N, 1, 100);
-    std::vector<int> lista2 = generateRandomList(N, 1, 100);
-
-    std::cout << "Conteúdo da primeira lista: ";
-    displayList(lista1);
-    std::cout << "Conteúdo da segunda lista: ";
-    displayList(lista2);
-
-    intersection(lista1, lista2);
-    uniqueNumbers(lista1, lista2);
+    cout << endl;
 
     return 0;
 }
