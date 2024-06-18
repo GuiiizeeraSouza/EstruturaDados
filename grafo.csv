@@ -1,0 +1,12 @@
+Vertices,Agudo,Cruz Alta,Itaara,Julio de Castilhos,Lajeado,Porto Alegre,Santa Cruz,Santa Maria,Sao Martinho,Sao Pedro,Soledade
+Agudo,0,0,0,0,0,0,1,1,0,0,0
+Cruz Alta,0,0,0,1,0,0,0,0,0,0,1
+Itaara,0,0,0,1,0,0,0,1,1,0,0
+Julio de Castilhos,0,1,1,0,0,0,0,0,0,0,0
+Lajeado,0,0,0,0,0,1,0,0,0,0,1
+Porto Alegre,0,0,0,0,1,0,1,0,0,0,0
+Santa Cruz,1,0,0,0,0,1,0,0,0,0,0
+Santa Maria,1,0,1,0,0,0,0,0,0,1,0
+Sao Martinho,0,0,1,0,0,0,0,0,0,0,0
+Sao Pedro,0,0,0,0,0,0,0,1,0,0,0
+Soledade,0,1,0,0,1,0,0,0,0,0,0
